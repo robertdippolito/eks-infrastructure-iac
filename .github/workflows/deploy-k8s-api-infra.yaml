@@ -46,3 +46,12 @@ jobs:
           terraform apply -auto-approve \
             -target=module.cloudfront \
             -target=module.route53_api_record
+
+      - name: Upload terraform state
+        uses: actions/upload-artifact@v3
+        with:
+          name: tfstate
+          path: |
+            terraform.tfstate
+            terraform.tfstate.backup
+
