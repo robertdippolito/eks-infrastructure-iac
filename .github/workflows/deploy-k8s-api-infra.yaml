@@ -10,10 +10,6 @@ jobs:
   deploy:
     name: Deploy k8s‑api‑infrastructure
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: k8s-api-infrastructure
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
