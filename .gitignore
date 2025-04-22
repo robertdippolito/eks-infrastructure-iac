@@ -1,0 +1,38 @@
+# Terraform directories
+.terraform/
+**/.terraform/
+
+# Terraform state files
+*.tfstate
+*.tfstate.backup
+*.backup
+
+# Terraform variable and override files (may contain secrets)
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Terraform plan outputs
+*.tfplan
+
+# Crash logs
+crash.log
+*.log
+
+# AWS CLI installer/package (if accidentally checked in)
+AWSCLIV2.pkg
+*.pkg
+
+# IDE / editor folders
+.vscode/
+.idea/
+
+# macOS Finder files
+.DS_Store
+
+# Vim swap files, emacs backups, temporary files
+*~
+*.swp
