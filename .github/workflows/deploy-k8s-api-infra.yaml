@@ -48,7 +48,7 @@ jobs:
             -target=module.route53_api_record
 
       - name: Upload terraform state
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: tfstate
           path: |
