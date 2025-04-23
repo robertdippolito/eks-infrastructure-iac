@@ -5,6 +5,13 @@ terraform {
       version = "~> 5.0"
     }
   }
+  backend "s3" {
+    bucket         = "terraform-state-bucket-k8s-api"
+    key            = "k8s-api-infra/terraform.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "terraform-locks"
+    encrypt        = true
+  }
 }
 
 provider "helm" {
@@ -56,7 +63,7 @@ module "eks_cluster" {
   source = "./modules/eks"
 
   cluster_name            = "my-eks-cluster"
-  cluster_role_arn        = "arn:aws:iam::978863440604:role/test-eks-cluster-role"
+  cluster_role_arn        = module.iam.cluster_role_arn
   subnet_ids              = module.vpc.private_subnet_ids
   endpoint_public_access  = true
   endpoint_private_access = false
@@ -72,7 +79,7 @@ module "eks_managed_nodes" {
 
   cluster_name           = module.eks_cluster.cluster_name
   node_group_name        = "my-eks-managed-nodes"
-  node_role_arn          = module.iam.role_arn
+  node_role_arn          = module.iam.worker_role_arn
   subnet_ids             = module.vpc.private_subnet_ids
   desired_size           = 2
   min_size               = 1
