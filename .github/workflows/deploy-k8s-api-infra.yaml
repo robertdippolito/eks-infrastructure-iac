@@ -44,9 +44,4 @@ jobs:
             -target=module.cloudfront \
             -target=module.route53_api_record
 
-      - name: Save state files to S3
-        run: |
-          aws s3 cp terraform.tfstate s3://tf-state-bucket-recovery/k8s-api-infra/terraform.tfstate
-          aws s3 cp terraform.tfstate.backup s3://tf-state-bucket-recovery/k8s-api-infra/terraform.tfstate.backup
-
 
