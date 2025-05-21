@@ -84,7 +84,7 @@ module "eks_managed_nodes" {
   desired_size           = 2
   min_size               = 1
   max_size               = 3
-  instance_types         = ["t2.micro"]
+  instance_types         = ["t2.medium"]
   disk_size              = 20
   ami_type               = "AL2_x86_64"
   ec2_ssh_key            = "k8s-kvp"

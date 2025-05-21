@@ -2,9 +2,6 @@ name: Deploy K8s API Infrastructure
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 
 jobs:
   deploy:
@@ -33,23 +30,16 @@ jobs:
         run: |
           terraform apply -auto-approve \
             -target=module.iam \
-      #       -target=module.vpc \
-      #       -target=module.eks_cluster \
-      #       -target=module.eks_managed_nodes \
-      #       -target=module.security_groups
+            -target=module.vpc \
+            -target=module.eks_cluster \
+            -target=module.eks_managed_nodes \
+            -target=module.security_groups
 
-      # - name: Apply Ingress‑NGINX Helm release
-      #   run: terraform apply -auto-approve -target=helm_release.ingress_nginx
+      - name: Apply Ingress‑NGINX Helm release
+        run: terraform apply -auto-approve -target=helm_release.ingress_nginx
 
-      # - name: Apply CloudFront & Route53
-      #   run: |
-      #     terraform apply -auto-approve \
-      #       -target=module.cloudfront \
-      #       -target=module.route53_api_record
-
-      # - name: Save state files to S3
-      #   run: |
-      #     aws s3 cp terraform.tfstate s3://tf-state-bucket-recovery/k8s-api-infra/terraform.tfstate
-      #     aws s3 cp terraform.tfstate.backup s3://tf-state-bucket-recovery/k8s-api-infra/terraform.tfstate.backup
-
-
+      - name: Apply CloudFront & Route53
+        run: |
+          terraform apply -auto-approve \
+            -target=module.cloudfront \
+            -target=module.route53_api_record
