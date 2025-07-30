@@ -13,7 +13,7 @@ ec2_ssh_key     = "k8s-kvp"
 vpc_cidr           = "10.0.0.0/16"
 availability_zones = ["us-east-1a", "us-east-1b", "us-east-1c"]
 
-aliases      = ["api.anytimeagile.com"]
-zone_name    = "anytimeagile.com"
-zone_comment = "Hosted zone for anytimeagile.com"
-domain_name  = "api.anytimeagile.com"
+aliases      = ["api.yourdomain.com"]
+zone_name    = "yourdomain.com"
+zone_comment = "Hosted zone for yourdomain.com"
+domain_name  = "api.yourdomain.com"
