@@ -1,0 +1,19 @@
+aws_region       = "us-east-1"
+environment      = "dev"
+
+backend_bucket     = "terraform-state-bucket-api"
+backend_bucket_key = "k8s-api-infra"
+dynamodb_table     = "terraform-locks"
+
+cluster_name    = "my-eks-cluster"
+node_group_name = "my-eks-managed-nodes"
+repo_name       = "my-repo"
+ec2_ssh_key     = "k8s-kvp"
+
+vpc_cidr           = "10.0.0.0/16"
+availability_zones = ["us-east-1a", "us-east-1b", "us-east-1c"]
+
+aliases      = ["api.anytimeagile.com"]
+zone_name    = "anytimeagile.com"
+zone_comment = "Hosted zone for anytimeagile.com"
+domain_name  = "api.anytimeagile.com"

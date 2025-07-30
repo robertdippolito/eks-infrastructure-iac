@@ -6,10 +6,10 @@ terraform {
     }
   }
   backend "s3" {
-    bucket         = "terraform-state-bucket-k8s-api"
-    key            = "k8s-api-infra/terraform.tfstate"
-    region         = "us-east-1"
-    dynamodb_table = "terraform-locks"
+    bucket         = var.backend_bucket
+    key            = "${var.backend_bucket_key}/terraform.tfstate"
+    region         = var.aws_region
+    dynamodb_table = var.dynamodb_table
     encrypt        = true
   }
 }
@@ -48,29 +48,29 @@ module "ecr" {
   source = "./modules/ecr"
 
   namespace   = "api"
-  repo_name   = "my-repo"
-  environment = "dev"
+  repo_name   = var.repo_name
+  environment = var.environment
 }
 
 module "vpc" {
   source      = "./modules/vpc"
-  vpc_cidr    = "10.0.0.0/16"
-  azs         = ["us-east-1a", "us-east-1b", "us-east-1c"]
+  vpc_cidr    = var.vpc_cidr
+  azs         = var.availability_zones
   environment = var.environment
 }
 
 module "eks_cluster" {
   source = "./modules/eks"
 
-  cluster_name            = "my-eks-cluster"
+  cluster_name            = var.cluster_name
   cluster_role_arn        = module.iam.cluster_role_arn
   subnet_ids              = module.vpc.private_subnet_ids
   endpoint_public_access  = true
   endpoint_private_access = false
   kubernetes_version      = "1.31"
   tags = {
-    Environment = "dev"
-    Project     = "my-eks-cluster"
+    Environment = var.environment
+    Project     = var.cluster_name
   }
 }
 
@@ -78,7 +78,7 @@ module "eks_managed_nodes" {
   source = "./modules/eks_managed_nodes"
 
   cluster_name           = module.eks_cluster.cluster_name
-  node_group_name        = "my-eks-managed-nodes"
+  node_group_name        = var.node_group_name
   node_role_arn          = module.iam.worker_role_arn
   subnet_ids             = module.vpc.private_subnet_ids
   desired_size           = 2
@@ -87,12 +87,12 @@ module "eks_managed_nodes" {
   instance_types         = ["t2.medium"]
   disk_size              = 20
   ami_type               = "AL2_x86_64"
-  ec2_ssh_key            = "k8s-kvp"
+  ec2_ssh_key            = var.ec2_ssh_key
   source_security_groups = [module.security_groups.sg_id]
   max_unavailable        = 1
   extra_tags = {
-    Environment = "prod"
-    Project     = "my-eks-cluster"
+    Environment = var.environment
+    Project     = var.cluster_name
   }
 }
 
@@ -133,7 +133,7 @@ module "cloudfront" {
 
   comment     = "CF Distribution for API via NLB"
   price_class = "PriceClass_All"
-  aliases     = ["api.anytimeagile.com"]
+  aliases     = var.aliases
 
   default_root_object = ""
 
@@ -154,7 +154,7 @@ module "cloudfront" {
   minimum_protocol_version = "TLSv1.2_2019"
 
   tags = {
-    Environment = "dev"
+    Environment = var.environment
     Project     = "my-api"
   }
   depends_on = [
@@ -165,9 +165,9 @@ module "cloudfront" {
 module "route53_api_record" {
   source = "./modules/route53"
 
-  zone_name                 = "anytimeagile.com" # The apex domain for the hosted zone
-  zone_comment              = "Hosted zone for anytimeagile.com"
-  domain_name               = "api.anytimeagile.com" # The FQDN to direct traffic to CloudFront
+  zone_name                 = var.zone_name
+  zone_comment              = var.zone_comment
+  domain_name               = var.domain_name
   cloudfront_domain         = module.cloudfront.cloudfront_distribution_domain_name
   cloudfront_hosted_zone_id = module.cloudfront.cloudfront_hosted_zone_id
   acm_certificate_validation = [
@@ -176,7 +176,7 @@ module "route53_api_record" {
     }
   ]
   tags = {
-    Environment = "dev"
+    Environment = var.environment
     Project     = "api-routing"
   }
 }

@@ -45,14 +45,16 @@ In addition to having an AWS account with credentials you'll need a domain name.
 ### TFVars
 |Variable|Example Value|Commentary|
 |:-|:-|:-|
-|backend bucket|terraform-state-bucket-api|The name of the remote state bucket|
-|backend bucket key|eks-iac|The key used to store the state <key>/terraform.tfstate|
+|backend_bucket|terraform-state-bucket-api|The name of the remote state bucket|
+|backend_bucket_key|eks-iac|The key used to store the state `<key>/terraform.tfstate`|
 |cluster_name|my-eks-cluster|The name assigned to your EKS cluster|
 |node_group_name|my-eks-managed-nodes|The name assigned to your EKS managed node group|
 |ec2_ssh_key|eks-kvp|The name of your key value pair for your EC2 machines|
 |aliases|yourdomain.com|The domain you want to redirect to your CloudFront|
 |zone_name|yourdomain.com|The domain assigned to your hosted zone|
-|domain_name|api.yourdomain.com|the specific prefix you want to redirect from i.e. api.yourdomain.com|
+|domain_name|api.yourdomain.com|The specific prefix you want to redirect from e.g. api.yourdomain.com|
+
+An example file named `terraform.tfvars.example` is provided with these values pre-populated.
 
 ## Network Architecture
 <img width="750" alt="network-only drawio" src="https://github.com/user-attachments/assets/4415e2cf-7a35-41bd-a602-a14bcd142bd2" />
