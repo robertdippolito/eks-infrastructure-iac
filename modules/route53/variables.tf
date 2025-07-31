@@ -1,3 +1,9 @@
+variable "project_name" {
+  description = "The name of the project."
+  type        = string
+  default     = "My Project"
+}
+
 variable "zone_name" {
   description = "The apex domain name for the hosted zone (e.g. robertdippolito.me)."
   type        = string
