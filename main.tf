@@ -92,7 +92,7 @@ module "eks_managed_nodes" {
   max_unavailable        = 1
   extra_tags = {
     Environment = var.environment
-    Project     = var.cluster_name
+    Project     = var.project_name
   }
 }
 
@@ -154,7 +154,7 @@ module "cloudfront" {
 
   tags = {
     Environment = var.environment
-    Project     = "my-api"
+    Project     = var.project_name
   }
   depends_on = [
     module.route53_api_record.acm_certificate_validation

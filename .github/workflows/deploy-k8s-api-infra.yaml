@@ -7,6 +7,24 @@ jobs:
   deploy:
     name: Deploy k8s‑api‑infrastructure
     runs-on: ubuntu-latest
+    env:
+      TF_VAR_aws_region: ${{ secrets.TF_VAR_aws_region }}
+      TF_VAR_environment: ${{ secrets.AWS_REGION }}
+      TF_VAR_project_name: ${{ secrets.TF_VAR_project_name }}
+      TF_VAR_backend_bucket: ${{ secrets.TF_VAR_backend_bucket }}
+      TF_VAR_backend_bucket_key: ${{ secrets.TF_VAR_backend_bucket_key }}
+      TF_VAR_dynamodb_table: ${{ secrets.TF_VAR_dynamodb_table }}
+      TF_VAR_cluster_name: ${{ secrets.TF_VAR_cluster_name }}
+      TF_VAR_node_group_name: ${{ secrets.TF_VAR_node_group_name }}
+      TF_VAR_repo_name: ${{ secrets.TF_VAR_repo_name }}
+      TF_VAR_ec2_ssh_key: ${{ secrets.TF_VAR_ec2_ssh_key }}
+      TF_VAR_vpc_cidr: ${{ secrets.TF_VAR_vpc_cidr }}
+      TF_VAR_availability_zones: ${{ secrets.TF_VAR_availability_zones }}
+      TF_VAR_aliases: ${{ secrets.TF_VAR_aliases }}
+      TF_VAR_zone_name: ${{ secrets.TF_VAR_zone_name }}
+      TF_VAR_zone_comment: ${{ secrets.TF_VAR_zone_comment }}
+      TF_VAR_domain_name: ${{ secrets.TF_VAR_domain_name }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -24,7 +42,12 @@ jobs:
           terraform_version: '1.5.0'
 
       - name: Terraform Init
-        run: terraform init
+        run: |
+          terraform init \
+            -backend-config="bucket=${{ secrets.TF_VAR_backend_bucket }}" \
+            -backend-config="key=${{ secrets.TF_VAR_backend_bucket_key }}" \
+            -backend-config="region=${{ secrets.AWS_REGION }}" \
+            -backend-config="dynamodb_table=${{ secrets.TF_VAR_dynamodb_table }}"
 
       - name: Apply core infra modules
         run: |
