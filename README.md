@@ -5,7 +5,7 @@ A managed node EKS cluster running in a VPC with egress capabilities to a MongoD
 
 ![image](https://img.shields.io/badge/Terraform-7B42BC?style=for-the-badge&logo=terraform&logoColor=white)
 
-<a href="https://github.com/robertdippolito/eks-infrastructure-iac/actions/workflows/deploy-k8s-api-infra.yaml">![Deploy K8s API Infrastructure](https://github.com/robertdippolito/eks-infrastructure-iac/actions/workflows/deploy-k8s-api-infra.yaml/badge.svg)</a>
+[![Deploy K8s API Infrastructure](https://github.com/robertdippolito/eks-infrastructure-iac/actions/workflows/deploy-k8s-api-infra.yaml/badge.svg)](https://github.com/robertdippolito/eks-infrastructure-iac/actions/workflows/deploy-k8s-api-infra.yaml)
 
 ## Table of Contents
 - [About](#-about)
