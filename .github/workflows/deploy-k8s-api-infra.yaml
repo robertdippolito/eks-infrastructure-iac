@@ -8,22 +8,22 @@ jobs:
     name: Deploy k8s‑api‑infrastructure
     runs-on: ubuntu-latest
     env:
-      TF_VAR_aws_region: ${{ secrets.TF_VAR_aws_region }}
-      TF_VAR_environment: ${{ secrets.AWS_REGION }}
-      TF_VAR_project_name: ${{ secrets.TF_VAR_project_name }}
-      TF_VAR_backend_bucket: ${{ secrets.TF_VAR_backend_bucket }}
-      TF_VAR_backend_bucket_key: ${{ secrets.TF_VAR_backend_bucket_key }}
-      TF_VAR_dynamodb_table: ${{ secrets.TF_VAR_dynamodb_table }}
-      TF_VAR_cluster_name: ${{ secrets.TF_VAR_cluster_name }}
-      TF_VAR_node_group_name: ${{ secrets.TF_VAR_node_group_name }}
-      TF_VAR_repo_name: ${{ secrets.TF_VAR_repo_name }}
-      TF_VAR_ec2_ssh_key: ${{ secrets.TF_VAR_ec2_ssh_key }}
-      TF_VAR_vpc_cidr: ${{ secrets.TF_VAR_vpc_cidr }}
-      TF_VAR_availability_zones: ${{ secrets.TF_VAR_availability_zones }}
-      TF_VAR_aliases: ${{ secrets.TF_VAR_aliases }}
-      TF_VAR_zone_name: ${{ secrets.TF_VAR_zone_name }}
-      TF_VAR_zone_comment: ${{ secrets.TF_VAR_zone_comment }}
-      TF_VAR_domain_name: ${{ secrets.TF_VAR_domain_name }}
+      TF_VAR_aws_region: ${{ secrets.AWS_REGION }}
+      TF_VAR_environment: ${{ secrets.TF_VAR_ENVIRONMENT }}
+      TF_VAR_project_name: ${{ secrets.TF_VAR_PROJECT_NAME }}
+      TF_VAR_backend_bucket: ${{ secrets.TF_VAR_BACKEND_BUCKET }}
+      TF_VAR_backend_bucket_key: ${{ secrets.TF_VAR_BACKEND_BUCKET_KEY }}
+      TF_VAR_dynamodb_table: ${{ secrets.TF_VAR_DYNAMODB_TABLE }}
+      TF_VAR_cluster_name: ${{ secrets.TF_VAR_CLUSTER_NAME }}
+      TF_VAR_node_group_name: ${{ secrets.TF_VAR_NODE_GROUP_NAME }}
+      TF_VAR_repo_name: ${{ secrets.TF_VAR_REPO_NAME }}
+      TF_VAR_ec2_ssh_key: ${{ secrets.TF_VAR_EC2_SSH_KEY}}
+      TF_VAR_vpc_cidr: ${{ secrets.TF_VAR_VPC_CIDR }}
+      TF_VAR_availability_zones: ${{ secrets.TF_VAR_AVAILABILITY_ZONE }}
+      TF_VAR_aliases: ${{ secrets.TF_VAR_ALIASES }}
+      TF_VAR_zone_name: ${{ secrets.TF_VAR_ZONE_NAME }}
+      TF_VAR_zone_comment: ${{ secrets.TF_VAR_ZONE_COMMENT }}
+      TF_VAR_domain_name: ${{ secrets.TF_VAR_DOMAIN_NAME }}
 
     steps:
       - name: Checkout repository
