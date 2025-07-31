@@ -3,12 +3,6 @@ variable "cluster_name" {
   type        = string
 }
 
-variable "project_name" {
-  description = "The name of the project."
-  type        = string
-  default     = "My Project"
-}
-
 variable "node_group_name" {
   description = "The name for the managed node group."
   type        = string
