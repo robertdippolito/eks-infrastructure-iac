@@ -1,17 +1,17 @@
-aws_region       = "us-east-1"
-environment      = "dev"
+# if you're using Github Actions to manage your applies you will need
+# add these values as SECRETS or VARIABLES to your Github repository 
 
-backend_bucket     = "terraform-state-bucket-api"
-backend_bucket_key = "k8s-api-infra"
-dynamodb_table     = "terraform-locks"
+aws_region       = "aws region"
+environment      = "env"
+project_name = "your-project"
 
-cluster_name    = "my-eks-cluster"
+cluster_name    = "your-cluster-name"
 node_group_name = "my-eks-managed-nodes"
 repo_name       = "my-repo"
-ec2_ssh_key     = "k8s-kvp"
+ec2_ssh_key     = "your-kvp"
 
-vpc_cidr           = "10.0.0.0/16"
-availability_zones = ["us-east-1a", "us-east-1b", "us-east-1c"]
+vpc_cidr           = "CIDR range"
+availability_zones = ["region-az"]
 
 aliases      = ["api.yourdomain.com"]
 zone_name    = "yourdomain.com"

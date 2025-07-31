@@ -4,7 +4,6 @@ resource "aws_security_group" "k8s_api_vpc_sg" {
   description = "Security group for EKS worker nodes"
   vpc_id      = var.vpc_id
 
-  # Allow nodes within the group to communicate with each other
   ingress {
     description      = "Allow node-to-node communication"
     from_port        = 0
@@ -13,7 +12,6 @@ resource "aws_security_group" "k8s_api_vpc_sg" {
     self             = true
   }
 
-  # Allow all outbound traffic
   egress {
     description = "Allow all outbound traffic"
     from_port   = 0

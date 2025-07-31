@@ -1,14 +1,3 @@
-# resource "aws_route53_zone" "hosted_zone" {
-#   name    = var.zone_name
-#   comment = var.zone_comment
-#   tags    = var.tags
-
-#   lifecycle {
-#     prevent_destroy = true
-#     create_before_destroy = true
-#   }
-# }
-
 data "aws_route53_zone" "hosted_zone" {
   name = var.zone_name
   private_zone = false

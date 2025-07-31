@@ -7,7 +7,7 @@ terraform {
   }
   backend "s3" {
     bucket         = var.backend_bucket
-    key            = "${var.backend_bucket_key}/terraform.tfstate"
+    key            = var.backend_bucket_key
     region         = var.aws_region
     dynamodb_table = var.dynamodb_table
     encrypt        = true
@@ -70,7 +70,7 @@ module "eks_cluster" {
   kubernetes_version      = "1.31"
   tags = {
     Environment = var.environment
-    Project     = var.cluster_name
+    Project     = var.project_name
   }
 }
 
@@ -105,7 +105,6 @@ data "aws_eks_cluster_auth" "cluster" {
 }
 
 data "aws_lb" "ingress_nginx" {
-  # pick the one LB whose service tag matches your Helm release
   tags = {
     "kubernetes.io/service-name" = "ingress-nginx/ingress-nginx-controller"
   }
@@ -177,7 +176,7 @@ module "route53_api_record" {
   ]
   tags = {
     Environment = var.environment
-    Project     = "api-routing"
+    Project     = var.project_name
   }
 }
 
