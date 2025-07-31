@@ -3,6 +3,12 @@ variable "aws_region" {
   default     = "us-east-1"
 }
 
+variable "project_name" {
+  description = "The name of the project."
+  type        = string
+  default     = "My Project"
+}
+
 variable "environment" {
   description = "Deployment environment"
   default     = "development"
