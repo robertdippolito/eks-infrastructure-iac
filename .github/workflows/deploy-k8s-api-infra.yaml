@@ -19,7 +19,7 @@ jobs:
       TF_VAR_repo_name: ${{ secrets.TF_VAR_REPO_NAME }}
       TF_VAR_ec2_ssh_key: ${{ secrets.TF_VAR_EC2_SSH_KEY}}
       TF_VAR_vpc_cidr: ${{ secrets.TF_VAR_VPC_CIDR }}
-      TF_VAR_availability_zones: ${{ secrets.TF_VAR_AVAILABILITY_ZONE }}
+      TF_VAR_availability_zones: ${{ secrets.TF_VAR_AVAILABILITY_ZONES }}
       TF_VAR_aliases: ${{ secrets.TF_VAR_ALIASES }}
       TF_VAR_zone_name: ${{ secrets.TF_VAR_ZONE_NAME }}
       TF_VAR_zone_comment: ${{ secrets.TF_VAR_ZONE_COMMENT }}
