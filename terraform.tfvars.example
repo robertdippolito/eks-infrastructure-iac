@@ -1,0 +1,19 @@
+# if you're using Github Actions to manage your applies you will need
+# add these values as SECRETS or VARIABLES to your Github repository 
+
+aws_region       = "aws region"
+environment      = "env"
+project_name = "your-project"
+
+cluster_name    = "your-cluster-name"
+node_group_name = "my-eks-managed-nodes"
+repo_name       = "my-repo"
+ec2_ssh_key     = "your-kvp"
+
+vpc_cidr           = "CIDR range"
+availability_zones = ["region-az"]
+
+aliases      = ["api.yourdomain.com"]
+zone_name    = "yourdomain.com"
+zone_comment = "Hosted zone for yourdomain.com"
+domain_name  = "api.yourdomain.com"
