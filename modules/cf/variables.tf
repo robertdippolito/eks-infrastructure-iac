@@ -139,3 +139,9 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "project_name" {
+  description = "The name of the project."
+  type        = string
+  default     = "My Project"
+}
