@@ -1,7 +1,7 @@
 # Infrastructure as Code for an EKS Cluster using Managed Node Groups
 A managed node EKS cluster running in a VPC with egress capabilities to a MongoDB database.
 
-<img width="750" alt="ArchitectureDiagram-Youtube drawio" src="https://github.com/user-attachments/assets/a17723d4-d912-4508-85e6-6fa8035ecc17" />
+<img width="750" alt="ArchitectureDiagram-Youtube drawio" src="./assets/full-architecture.png" />
 
 ![image](https://img.shields.io/badge/Terraform-7B42BC?style=for-the-badge&logo=terraform&logoColor=white)
 
@@ -57,10 +57,10 @@ In addition to having an AWS account with credentials you'll need a domain name.
 An example file named `terraform.tfvars.example` is provided with these values pre-populated.
 
 ## Network Architecture
-<img width="750" alt="network-only drawio" src="https://github.com/user-attachments/assets/4415e2cf-7a35-41bd-a602-a14bcd142bd2" />
+<img width="750" alt="network-only drawio" src="./assets/vpc-architecture.png" />
 
 ## Cluster Architecture
-<img width="750" alt="k8s-resources drawio" src="https://github.com/user-attachments/assets/9a40f8fe-68f6-4e40-aab3-01660b945a7b" />
+<img width="750" alt="k8s-resources drawio" src="./assets/ingress-architecture.png" />
 
 ## 📃 License 
 As much as possible I'd like to encourage participation and collaboration. This code is open-source software licensed under [Apache 2.0 License](https://github.com/gowebly/gowebly/blob/main/LICENSE), created and supported by [Robert D'Ippolito](https://robertdippolito.me) for people and robots.
