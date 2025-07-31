@@ -3,12 +3,6 @@ variable "cluster_name" {
   type        = string
 }
 
-variable "project_name" {
-  description = "The name of the project."
-  type        = string
-  default     = "My Project"
-}
-
 variable "cluster_role_arn" {
   description = "The ARN of the IAM role that provides permissions for the EKS cluster to make calls to AWS services."
   type        = string
