@@ -5,14 +5,13 @@ A managed node EKS cluster running in a VPC with egress capabilities to a MongoD
 
 ![image](https://img.shields.io/badge/Terraform-7B42BC?style=for-the-badge&logo=terraform&logoColor=white)
 
-![Deploy K8s API Infrastructure](https://github.com/robertdippolito/eks-infrastructure-iac/actions/workflows/deploy-k8s-api-infra.yaml/badge.svg)(https://github.com/robertdippolito/eks-infrastructure-iac/actions/workflows/deploy-k8s-api-infra.yaml)
+<a href="https://github.com/robertdippolito/eks-infrastructure-iac/actions/workflows/deploy-k8s-api-infra.yaml">![Deploy K8s API Infrastructure](https://github.com/robertdippolito/eks-infrastructure-iac/actions/workflows/deploy-k8s-api-infra.yaml/badge.svg)</a>
 
 ## Table of Contents
 - [About](#-about)
 - [Getting Started](#-getting-started)
-- [Network Architecture](#-network)
-- [Ingress Architecture](#-ingress)
-- [Feedback and Contributions](#-feedback-and-contributions)
+- [Network Architecture](#network-architecture)
+- [Cluster Architecture](#cluster-architecture)
 - [License](#-license)
 - [Contacts](#%EF%B8%8F-contacts)
 
@@ -21,7 +20,7 @@ This repository is part of a multi-repository experiment designed to test Kubern
 
 Videos related to this repository can be found here:
 
-<a href="www.youtube.com/@RobOps101">![image](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white) </a>
+<a href="https://www.youtube.com/@RobOps101">![image](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white) </a>
 ## 🔥 Getting Started
 This repository is designed to be spun up with very little additional configuration. That being said, there is still a few things that must be set up beforehand. This section describes those things. 
 > [!IMPORTANT]
