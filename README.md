@@ -21,7 +21,7 @@ This repository is part of a multi-repository experiment designed to test Kubern
 
 Videos related to this repository can be found here:
 
-<a href="google.com">![image](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white) </a>
+<a href="www.youtube.com/@RobOps101">![image](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white) </a>
 ## 🔥 Getting Started
 This repository is designed to be spun up with very little additional configuration. That being said, there is still a few things that must be set up beforehand. This section describes those things. 
 > [!IMPORTANT]
