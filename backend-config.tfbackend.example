@@ -1,6 +1,6 @@
 # Optional, only required if using a remote backend.
 
-bucket     = "your-bucket-name"
-key = "your-bucket-key"
-region       = "AWS region"
-dynamodb_table = "your-dynamo-table-name"
+bucket          = "your-bucket-name"
+key             = "your-bucket-key"
+region          = "AWS region"
+dynamodb_table  = "your-dynamo-table-name"
