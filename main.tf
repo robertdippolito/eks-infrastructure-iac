@@ -137,8 +137,8 @@ module "cloudfront" {
   default_root_object = ""
 
   viewer_protocol_policy = "redirect-to-https"
-  allowed_methods        = ["GET", "HEAD", "OPTIONS"]
-  cached_methods         = ["GET", "HEAD", "OPTIONS"]
+  allowed_methods        = ["GET", "HEAD", "OPTIONS","POST", "PUT", "PATCH", "DELETE"]
+  cached_methods         = ["GET", "HEAD", "OPTIONS", "POST", "PUT", "PATCH", "DELETE"]
   forward_query_string   = false
   cookie_forwarding      = "none"
   min_ttl                = 0
