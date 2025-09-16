@@ -76,6 +76,6 @@ jobs:
       - name: Add Metrics Server EKS Addon 
         run: |
           aws eks create-addon \
-            --cluster-name my-eks-cluster \
+            --cluster-name ${{ secrets.TF_VAR_CLUSTER_NAME }} \
             --addon-name metrics-server \
-            --region us-east-1
+            --region ${{ secrets.AWS_REGION }}
