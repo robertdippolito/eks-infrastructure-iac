@@ -66,3 +66,16 @@ jobs:
           terraform apply -auto-approve \
             -target=module.cloudfront \
             -target=module.route53_api_record
+      
+      - name: Update kubeconfig
+        run: |
+          aws eks update-kubeconfig \
+            --name ${{ secrets.TF_VAR_CLUSTER_NAME }} \
+            --region ${{ secrets.AWS_REGION }}
+
+      - name: Add Metrics Server EKS Addon 
+        run: |
+          aws eks create-addon \
+            --cluster-name ${{ secrets.TF_VAR_CLUSTER_NAME }} \
+            --addon-name metrics-server \
+            --region ${{ secrets.AWS_REGION }}
