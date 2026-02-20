@@ -67,7 +67,7 @@ module "eks_cluster" {
   subnet_ids              = module.vpc.private_subnet_ids
   endpoint_public_access  = true
   endpoint_private_access = false
-  kubernetes_version      = "1.31"
+  kubernetes_version      = "1.35"
   tags = {
     Environment = var.environment
     Project     = var.project_name
@@ -98,10 +98,16 @@ module "eks_managed_nodes" {
 
 data "aws_eks_cluster" "cluster" {
   name = module.eks_cluster.cluster_name
+  depends_on = [
+    module.eks_cluster
+  ]
 }
 
 data "aws_eks_cluster_auth" "cluster" {
   name = module.eks_cluster.cluster_name
+  depends_on = [
+    module.eks_cluster
+  ]
 }
 
 data "aws_lb" "ingress_nginx" {
@@ -119,7 +125,28 @@ module "security_groups" {
 
 module "iam" {
   source       = "./modules/iam"
-  cluster_name = module.eks_cluster.cluster_name
+  cluster_name = var.cluster_name
+}
+
+module "external_secrets_irsa" {
+  source = "./modules/external_secrets_irsa"
+
+  cluster_name                          = var.cluster_name
+  oidc_issuer_url                       = module.eks_cluster.cluster_oidc_issuer_url
+  oidc_audience                         = var.oidc_audience
+  external_secrets_namespace            = var.external_secrets_namespace
+  external_secrets_service_account_name = var.external_secrets_service_account_name
+  external_secrets_role_name            = var.external_secrets_role_name
+  create_external_secrets_policy        = var.create_external_secrets_policy
+  external_secrets_policy_name          = var.external_secrets_policy_name
+  external_secrets_policy_description   = var.external_secrets_policy_description
+  external_secrets_policy_resources     = var.external_secrets_policy_resources
+  external_secrets_policy_arns          = var.external_secrets_policy_arns
+
+  tags = {
+    Environment = var.environment
+    Project     = var.project_name
+  }
 }
 
 module "cloudfront" {
@@ -137,7 +164,7 @@ module "cloudfront" {
   default_root_object = ""
 
   viewer_protocol_policy = "redirect-to-https"
-  allowed_methods        = ["GET", "HEAD", "OPTIONS","POST", "PUT", "PATCH", "DELETE"]
+  allowed_methods        = ["GET", "HEAD", "OPTIONS", "POST", "PUT", "PATCH", "DELETE"]
   cached_methods         = ["GET", "HEAD", "OPTIONS"]
   forward_query_string   = false
   cookie_forwarding      = "none"
@@ -179,4 +206,3 @@ module "route53_api_record" {
     Project     = var.project_name
   }
 }
-

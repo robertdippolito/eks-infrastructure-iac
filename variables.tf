@@ -82,3 +82,57 @@ variable "domain_name" {
   description = "Fully qualified domain name for the API"
   type        = string
 }
+
+variable "oidc_audience" {
+  description = "OIDC audience for IAM web identity trust."
+  type        = string
+  default     = "sts.amazonaws.com"
+}
+
+variable "external_secrets_namespace" {
+  description = "Namespace where external-secrets service account runs."
+  type        = string
+  default     = "external-secrets"
+}
+
+variable "external_secrets_service_account_name" {
+  description = "Service account name used by external-secrets."
+  type        = string
+  default     = "external-secrets"
+}
+
+variable "external_secrets_role_name" {
+  description = "Optional role name override for the external-secrets IRSA role."
+  type        = string
+  default     = null
+}
+
+variable "create_external_secrets_policy" {
+  description = "Create the external-secrets IAM policy in Terraform."
+  type        = bool
+  default     = true
+}
+
+variable "external_secrets_policy_name" {
+  description = "Name of the external-secrets IAM policy."
+  type        = string
+  default     = "external-secrets-policy"
+}
+
+variable "external_secrets_policy_description" {
+  description = "Description for the external-secrets IAM policy."
+  type        = string
+  default     = "Allows external-secrets to read from AWS Secrets Manager and SSM Parameter Store."
+}
+
+variable "external_secrets_policy_resources" {
+  description = "Resource ARNs allowed by the external-secrets IAM policy."
+  type        = list(string)
+  default     = ["*"]
+}
+
+variable "external_secrets_policy_arns" {
+  description = "Additional policy ARNs to attach to the external-secrets role."
+  type        = list(string)
+  default     = []
+}

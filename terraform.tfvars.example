@@ -17,3 +17,15 @@ aliases      = ["api.yourdomain.com"]
 zone_name    = "yourdomain.com"
 zone_comment = "Hosted zone for yourdomain.com"
 domain_name  = "api.yourdomain.com"
+
+oidc_audience = "sts.amazonaws.com"
+
+external_secrets_namespace            = "external-secrets"
+external_secrets_service_account_name = "external-secrets"
+external_secrets_role_name            = "external-secrets-irsa-role"
+create_external_secrets_policy        = true
+external_secrets_policy_name          = "external-secrets-policy"
+external_secrets_policy_description   = "Allows external-secrets to read from AWS Secrets Manager and SSM Parameter Store."
+external_secrets_policy_resources     = ["*"]
+external_secrets_policy_arns          = [
+]
