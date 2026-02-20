@@ -56,7 +56,8 @@ jobs:
             -target=module.vpc \
             -target=module.eks_cluster \
             -target=module.eks_managed_nodes \
-            -target=module.security_groups
+            -target=module.security_groups \
+            -target=module.external_secrets_irsa
 
       - name: Apply Ingress‑NGINX Helm release
         run: terraform apply -auto-approve -target=helm_release.ingress_nginx

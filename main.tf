@@ -86,7 +86,7 @@ module "eks_managed_nodes" {
   max_size               = 3
   instance_types         = ["t2.medium"]
   disk_size              = 20
-  ami_type               = "AL2_x86_64"
+  ami_type               = "AL2023_X86_64_STANDARD"
   ec2_ssh_key            = var.ec2_ssh_key
   source_security_groups = [module.security_groups.sg_id]
   max_unavailable        = 1

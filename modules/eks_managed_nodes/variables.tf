@@ -50,9 +50,9 @@ variable "disk_size" {
 }
 
 variable "ami_type" {
-  description = "The AMI type for the worker nodes. Options include AL2_x86_64, AL2_x86_64_GPU, or BOTTLEROCKET_x86_64."
+  description = "The AMI type for the worker nodes. Examples: AL2023_X86_64_STANDARD, AL2_x86_64, BOTTLEROCKET_x86_64."
   type        = string
-  default     = "AL2_x86_64"
+  default     = "AL2023_X86_64_STANDARD"
 }
 
 variable "ec2_ssh_key" {
