@@ -52,8 +52,27 @@ In addition to having an AWS account with credentials you'll need a domain name.
 |aliases|yourdomain.com|The domain you want to redirect to your CloudFront|
 |zone_name|yourdomain.com|The domain assigned to your hosted zone|
 |domain_name|api.yourdomain.com|The specific prefix you want to redirect from e.g. api.yourdomain.com|
+|external_secrets_namespace|external-secrets|Namespace where the External Secrets service account runs|
+|external_secrets_service_account_name|external-secrets|Service account trusted by IRSA|
+|external_secrets_role_name|external-secrets-irsa-role|IAM role name for External Secrets IRSA|
+|create_external_secrets_policy|true|Create `external-secrets-policy` in Terraform|
+|external_secrets_policy_name|external-secrets-policy|Name for the Terraform-managed policy|
+|external_secrets_policy_resources|`["*"]`|Resources the policy can read from|
+|external_secrets_policy_arns|arn list|Optional extra policies to attach to the External Secrets role|
 
 An example file named `terraform.tfvars.example` is provided with these values pre-populated.
+
+### External Secrets IRSA (automated)
+This Terraform stack now creates the EKS IAM OIDC provider and an External Secrets IRSA role as part of `terraform apply`.
+
+After apply, annotate the Kubernetes service account with the output role ARN:
+
+```bash
+kubectl annotate serviceaccount external-secrets \
+  -n external-secrets \
+  eks.amazonaws.com/role-arn="$(terraform output -raw external_secrets_role_arn)" \
+  --overwrite
+```
 
 ## Network Architecture
 <img width="750" alt="network-only drawio" src="./assets/vpc-architecture.png" />

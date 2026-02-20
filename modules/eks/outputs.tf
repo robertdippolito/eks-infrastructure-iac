@@ -17,3 +17,8 @@ output "cluster_name" {
   description = "The name of the EKS cluster"
   value       = aws_eks_cluster.eks_cluster.name
 }
+
+output "cluster_oidc_issuer_url" {
+  description = "The OIDC issuer URL for the EKS cluster."
+  value       = aws_eks_cluster.eks_cluster.identity[0].oidc[0].issuer
+}

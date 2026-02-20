@@ -10,3 +10,18 @@ output "vpc_id" {
 output "api_dns_name" {
   value = module.route53_api_record.record_fqdn
 }
+
+output "eks_oidc_provider_arn" {
+  description = "EKS IAM OIDC provider ARN."
+  value       = module.external_secrets_irsa.oidc_provider_arn
+}
+
+output "external_secrets_role_arn" {
+  description = "IAM role ARN for external-secrets IRSA."
+  value       = module.external_secrets_irsa.external_secrets_role_arn
+}
+
+output "external_secrets_policy_arn" {
+  description = "IAM policy ARN for external-secrets."
+  value       = module.external_secrets_irsa.external_secrets_policy_arn
+}
